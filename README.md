@@ -1,14 +1,3 @@
-# 体验地址
-
-[在线预览](http://vite-admin.jinxinapp.cn/)
-
-[monitor-vite-admin](http://monitor-vite-admin.jinxinapp.cn/login) - 用于对上面网页监控，前端统一脚手架。上面地址因为资源问题，可能服务会挂。
-
-## Vite-React-Amin
-
-- 分支 tiny 版本为轻量版本，只涉及layout布局，代码规划，基础路由等基本功能。
-- 预览请使用mock模式启动 npm run start:mock。
-- master 升级为vite5.x
 
 ## 相关技术
 
@@ -29,11 +18,7 @@
 
 ## 项目简介
 
-基于 vite-mobx-TypeScript-react 开发的后台管理系统
-
-[个人博客中,Problem 记录了该项目开发中遇到的相关问题](http://blog.jinxinapp.cn/#/problem/vite4-react-admin)
-
-![项目截图](./src/assets/show.png)
+基于 vite-mobx-TypeScript-react-Nest 开发的数字门店管理系统
 
 ## 主要功能
 
@@ -65,22 +50,32 @@
   - token 存储
   - 后端 jwt
   - 权限相关控制
-- 全屏显示
-- i18n 国际化
-  - 使用 react-intl-hooks 进行国际化处理
-- 单元测试
-- 菜单管理
-  - 表结构，级联操作
+- 订单管理
+  - 订单列表
+  - 订单详情
+  - 订单创建
+  - 订单删除
+  - 订单编辑
+- 商品管理
+  - 商品列表
+  - 创建商品
+  - 商品上下架
+  - 商品编辑
+- 活动管理
+  - 活动列表
+  - 创建活动
+  - 活动提前结束
+- 排行榜
 - 用户管理
-  - 强校验
+  - 用户列表
+  - 用户创建
+  - 用户编辑
+  - 用户删除
   - 文件上传功能(图片上传)
 - 角色管理
+  - 角色列表
+  - 角色编辑
   - 角色联动菜单进行权限控制
-- 前端埋点
-  - 统计 pv，uv 且展示
-- echart，高德 api 地图数据展示
-  - 通过 AMapUI 取 geoJSON 进行地图渲染
-- 持续更新中。。。
 
 ## 安装依赖
 
@@ -96,25 +91,21 @@ npx husky install
 ### 开发启动
 
 ```bash
-npm run start
+pnpm start
 # mock模式启动
-npm run start:mock
+pnpm start:mock
 ```
 
 ### 打包
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ### 检查代码样式
 
 ```bash
-npm run lint
+pnpm lint:script
+pnpm lint:style
 ```
 
-### 测试代码
-
-```bash
-npm run test
-```
