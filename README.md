@@ -22,30 +22,6 @@
 
 ## 主要功能
 
-```text
-├── README.md
-├── nest-cli.json
-├── package.json
-├── pnpm-lock.yaml
-├── src
-│   ├── activity
-│   ├── app.controller.ts
-│   ├── app.module.ts
-│   ├── app.service.ts
-│   ├── auth
-│   ├── common
-│   ├── logs
-│   ├── main.ts
-│   ├── order
-│   ├── permission
-│   ├── product
-│   ├── role
-│   ├── sys
-│   └── user
-├── tsconfig.build.json
-└── tsconfig.json
-```
-
 - 登录功能
   - token 存储
   - 后端 jwt
