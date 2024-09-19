@@ -18,7 +18,7 @@
 
 ## 项目简介
 
-基于 vite-mobx-TypeScript-react-Nest 开发的数字门店管理系统
+基于 Vite-Mobx-TypeScript-React-Nest 开发的数字门店管理系统
 
 ## 主要功能
 
