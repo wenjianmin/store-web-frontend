@@ -1,3 +1,6 @@
+<p align="center">
+  <a href="https://react.dev" target="blank"><img src="https://avatars.githubusercontent.com/u/102812?s=200&v=4" width="200" alt="React Logo" /></a>
+</p>
 
 ## 相关技术
 
@@ -18,7 +21,7 @@
 
 ## 项目简介
 
-基于 Vite-Mobx-TypeScript-React-Nest 开发的数字门店管理系统
+基于 Vite-Mobx-TypeScript-React-Nest 开发的数字门店管理系统，是 **《NestJS全栈开发解析：快速上手与实践》** 的前端项目实战部分，与 **2024.9月** 上线。
 
 ## 主要功能
 
@@ -85,3 +88,23 @@ pnpm lint:script
 pnpm lint:style
 ```
 
+## 交流学习
+
+在项目运行中有遇到任何问题，请直接与作者联系！
+需要加入交流群探讨学习，直接扫描下方二维码，如过期请添加作者WeChat！
+
+作者WeChat：
+
+<img src="image.png" alt="描述文本" width="200" height="auto">
+
+
+项目交流群：
+
+<img src="image-1.png" alt="描述文本" width="200" height="auto">
+
+## 支持作者
+
+
+图书购买链接：<a href="https://item.jd.com/14283389.html" target="blank">京东</a>
+
+图书购买链接：<a href="https://product.dangdang.com/29783482.html" target="blank">当当</a>
