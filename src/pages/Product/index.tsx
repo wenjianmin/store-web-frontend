@@ -1,4 +1,4 @@
-import { createProduct, delProduct, editProduct, fileUpload, getProductList } from '@/apis/product'
+import { createProduct, delProduct, editProduct, fileUpload, getProductList, importProduct } from '@/apis/product'
 import ExcelTable from '@/components/exportExcel'
 import {
   ActionType,
@@ -12,7 +12,7 @@ import { Button, GetProp, Modal, Popconfirm, Image, Tag, Upload, UploadFile, Upl
 import { useRef, useState } from 'react'
 import { observer } from 'mobx-react'
 import { ProductStatus } from '@/common/enums'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined, UploadOutlined } from '@ant-design/icons'
 
 type FileType = Parameters<GetProp<UploadProps, 'beforeUpload'>>[0]
 const ProductManage: React.FC = () => {
@@ -42,7 +42,7 @@ const ProductManage: React.FC = () => {
     setPreviewOpen(true)
   }
   const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
+    setFileList(newFileList)
 
   const handleRemove = (file: UploadFile) => {
     const index = fileList.indexOf(file)
@@ -58,6 +58,15 @@ const ProductManage: React.FC = () => {
     formData.append('type', 'product_images')
     const { data = {} } = await fileUpload(formData)
     setImageUrl(data.url)
+    return false
+  }
+  const handleBeforeUploadProduct = async (file: FileType) => {
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('type', 'product_list')
+    await importProduct(formData)
+    actionRef?.current?.reload()
+    message.success('导入成功')
     return false
   }
 
@@ -135,6 +144,10 @@ const ProductManage: React.FC = () => {
       }
     }
   }
+
+  const handleExportTable = async () => {
+    window.location.href = `${import.meta.env.VITE_APP_URL}/api/product/export`
+  }
   return (
     <>
       <ExcelTable
@@ -163,8 +176,9 @@ const ProductManage: React.FC = () => {
             dataIndex: 'images',
             hideInSearch: true,
             render(_, record) {
+              const baseUrl = import.meta.env.VITE_APP_URL
               return record.images?.length ? record.images?.map((item: string) => (
-                <Image width={60} src={item} alt={item} key={item} />
+                <Image width={60} src={baseUrl + item} alt={item} key={item} />
               )) : '-'
             },
           },
@@ -241,10 +255,21 @@ const ProductManage: React.FC = () => {
         }}
         actionRef={actionRef}
         rowSelection={false}
+        customExport={ handleExportTable }
         toolBarRenderFn={() => [
-          <Button type="primary" key="add" onClick={() => showModal()}>
-            新增商品
-          </Button>
+          <>
+            <Button type="primary" key="add" onClick={() => showModal()}>
+              新增商品
+            </Button>
+            <Upload
+              showUploadList={false}
+              beforeUpload={handleBeforeUploadProduct}
+            >
+              <Button icon={<UploadOutlined />}>
+                导入商品数据
+              </Button>
+            </Upload>
+          </>
         ]}
       />
       {/* 新增商品 */}

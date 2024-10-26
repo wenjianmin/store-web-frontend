@@ -51,7 +51,19 @@ export async function fileUpload(data: FormData) {
     method: 'post',
     data,
     headers: {
-      "Content-type": "multipart/form-data",
+      'Content-type': 'multipart/form-data',
+    }
+  })
+}
+
+
+export async function importProduct(data: FormData) {
+  return http.request({
+    url: '/api/product/import',
+    method: 'post',
+    data,
+    headers: {
+      'Content-type': 'multipart/form-data',
     }
   })
 }

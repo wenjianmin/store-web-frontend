@@ -21,7 +21,7 @@ type IExcelTable = {
   /** 设置选择的row */
   setSelectedRows?: React.Dispatch<React.SetStateAction<any[]>>
   /** 自定义导出 */
-  customExport?: (params: any) => any
+  customExport?: () => unknown
   /** 额外的勾选属性 */
   extraRowSelection?: Record<string, any>
   /** 初始值key选择 */
@@ -79,15 +79,8 @@ const ExcelTable: FC<IExcelTable> = forwardRef((props, formRefMy: any) => {
   }, [initRowKey])
 
   const onExport = async () => {
-    console.log(formRef?.current?.getFieldsValue())
     if (customExport) {
-      customExport({
-        record: formRef?.current?.getFieldsValue(),
-        id__in:
-          (customKeys || selectedRowKeys)?.length > 0
-            ? (customKeys || selectedRowKeys)?.join?.(',')
-            : undefined
-      })
+      customExport()
     } else {
       const data = await exportExeclReq?.({
         formData: formRef?.current?.getFieldsValue(),
@@ -161,10 +154,10 @@ const ExcelTable: FC<IExcelTable> = forwardRef((props, formRefMy: any) => {
         }}
         dateFormatter="string"
         toolBarRender={
-          toolBarRenderFn || exportExeclReq
+          toolBarRenderFn
             ? () => [
-                exportExeclReq && (
-                  <Button key="out" onClick={onExport} type="primary">
+                 (exportExeclReq || customExport) && (
+                  <Button key="out" onClick={onExport} type='primary'>
                     导出数据
                   </Button>
                 ),
